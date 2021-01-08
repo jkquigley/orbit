@@ -1,0 +1,71 @@
+# Solar system with the inner four planets
+# Rocket launched from earth
+
+simulation:
+  timestep: 1 # s
+  nframes: 50000
+  steps_per_frame: 2000
+
+central_body:
+  name: sun
+  mass: 1.9885e+30 # kg
+  radius: 6.597e+9 # m
+#  radius: 6.597e+8 # m
+  colour:
+    - 255
+    - 228
+    - 15
+
+orbital_bodies:
+  - name: mercury
+    mass: 3.3011e+23 # kg
+    radius: 2.4397e+9 # m
+#    radius: 2.4397e+6 # m
+    orbital_radius: 5.791e+10 # m
+    colour:
+      - 126
+      - 126
+      - 126
+
+  - name: venus
+    mass: 4.8675e+24 # kg
+    radius: 6.0518e+9 # m
+#    radius: 6.0518e+6 # m
+    orbital_radius: 1.08e+11 # m
+    colour:
+      - 228
+      - 235
+      - 191
+
+  - name: earth
+    mass: 5.972e+24 # kg
+    radius: 6.371e+9 # m
+#    radius: 6.371e+6 # m
+    orbital_radius: 1.4959e+11 # m
+    colour:
+      - 44
+      - 77
+      - 143
+    rockets:
+      - name: frigga
+        mass: 2.8e+6 # kg
+        fuel_mass: 4e+6 # kg
+        burn_rate: 2e+4 # kg/s
+        thrust_magnitude: 5e+7 # N
+        origin: earth
+        angular_launch_position: 0.5 # rad
+        radius: 5e+8 # m
+        colour:
+          - 250
+          - 250
+          - 250
+
+  - name: mars
+    mass: 6.417e+23 # kg
+    radius: 3.39e+9 # m
+#    radius: 3.39e+6 # m
+    orbital_radius: 2.279e+11 # m
+    colour:
+      - 207
+      - 46
+      - 49

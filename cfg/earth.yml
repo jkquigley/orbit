@@ -1,0 +1,27 @@
+# Sun and Earth
+
+simulation:
+  timestep: 1 # s
+  nframes: 50000
+  steps_per_frame: 20000
+
+central_body:
+  name: sun
+  mass: 1.9885e+30 # kg
+  radius: 6.597e+9 # m
+  #  radius: 6.597e+8 # m
+  colour:
+    - 255
+    - 228
+    - 15
+
+orbital_bodies:
+  - name: earth
+    mass: 5.972e+24 # kg
+    radius: 6.371e+9 # m
+    #      radius: 6.371e+6 # m
+    orbital_radius: 1.4959e+11 # m
+    colour:
+      - 44
+      - 77
+      - 143
