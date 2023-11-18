@@ -16,6 +16,7 @@ void operator >> (const YAML::Node &node, OutputParams &params) {
     params.filename = "";
   }
 
+  params.display = node["display"].as<bool>();
   params.save = params.filename != "";
   params.height = node["height"].as<int>();
   params.width = node["width"].as<int>();

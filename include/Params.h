@@ -12,6 +12,7 @@
  * Data structure to store the output parameters.
  */
 struct OutputParams {
+  bool display;
   bool save;
   std::string filename;
   int width;

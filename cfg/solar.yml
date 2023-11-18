@@ -1,6 +1,7 @@
 # Solar system with the inner four planets
 
 output:
+  display: true
   filename: solar.avi
   width: 720
   height: 720

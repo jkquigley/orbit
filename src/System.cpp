@@ -153,7 +153,7 @@ void System::run() {
 
     // display the image
     if (this->output_params.save) video.write(frame);
-    cv::imshow("Simulation", frame);
+    if (this->output_params.display) cv::imshow("Simulation", frame);
     if (cv::waitKey(1) == 27) return;
   }
 }
