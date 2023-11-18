@@ -130,11 +130,14 @@ void System::run(const char* filename, const bool &animate)
 
         // find the initial max distance to scale te animation
         // the max distance needs to be a little bigger than calculated to contain all bodies
-        double max_dist = -1;
+        double max_dist = 0;
         for (const auto &body: this->bodies) {
             auto distance = body.getDistance();
-            if (distance > max_dist) max_dist = distance * 1.2;
+            if (distance > max_dist) max_dist = distance;
         }
+
+        // Add padding for the image
+        max_dist *= 1.2;
 
         // update the system for each frame and display it
         // write the energy data to file
