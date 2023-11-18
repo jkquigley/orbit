@@ -11,13 +11,12 @@
 void operator >> (const YAML::Node &node, OutputParams &params) {
   try {
     params.filename = node["filename"].as<std::string>();
-    params.save = true;
   }
   catch (YAML::Exception &e) {
-    params.save = false;
     params.filename = "";
   }
 
+  params.save = params.filename != "";
   params.height = node["height"].as<int>();
   params.width = node["width"].as<int>();
   params.fps = node["fps"].as<int>();
