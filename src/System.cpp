@@ -134,11 +134,16 @@ void System::run() {
                  cv::FILLED);
     }
 
-    // add the energy values to the image
-    std::string text = "Total Energy: " +
+    // add the frame count and energy values to the image
+    std::string frame_text = "Frame: " + std::to_string(i) + "/" +
+        std::to_string(this->sim_params.nframes);
+    cv::putText(frame, frame_text, cv::Point(10, 20),cv::FONT_HERSHEY_SIMPLEX,
+                0.35,cv::Scalar(255, 255, 255), 1);
+
+    std::string energy_text = "Total Energy: " +
         scientificNotation(this->getTotalEnergy()) + " J";
-    cv::putText(frame, text, cv::Point(10, 20), cv::FONT_HERSHEY_SIMPLEX, 0.35,
-                cv::Scalar(255, 255, 255), 1);
+    cv::putText(frame, energy_text, cv::Point(10, image_width - 20),
+                cv::FONT_HERSHEY_SIMPLEX,0.35,cv::Scalar(255, 255, 255), 1);
 
     // display the image
     cv::imshow("Simulation", frame);

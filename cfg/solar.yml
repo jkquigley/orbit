@@ -22,7 +22,7 @@ bodies:
   # Mercury
   - mass: 3.3011e+23 # kg
     radius: 2.4397e+9 # m
-#      radius: 2.4397e+6 # m
+#    radius: 2.4397e+6 # m
     position:
       - 5.791e+10 # m
       - 0 # m
