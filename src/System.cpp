@@ -95,12 +95,18 @@ void System::update() {
  Run the simulation and animate it.
  */
 void System::run() {
-  // get the initial image conditions
-  const int image_width = 500;
-  const int image_length = 500;
-  const int half_image_width = image_width / 2;
-  const int half_image_length = image_length / 2;
-  cv::Mat background(image_width, image_length, CV_8UC3, cv::Scalar(0, 0, 0));
+  // set up the image conditions
+  auto image_size = cv::Size(this->output_params.width,
+                             this->output_params.height);
+  const int half_image_width = image_size.width / 2;
+  const int half_image_length = image_size.height / 2;
+  cv::Mat background(image_size.width , this->output_params.height,
+                     CV_8UC3, cv::Scalar(0, 0, 0));
+
+  // set up a video writer
+  cv::VideoWriter video(this->output_params.filename,
+                        cv::VideoWriter::fourcc('M', 'J', 'P', 'G'),
+                        this->output_params.fps, image_size);
 
   // find the initial max distance to scale te animation
   double max_dist = 0;
@@ -137,15 +143,16 @@ void System::run() {
     // add the frame count and energy values to the image
     std::string frame_text = "Frame: " + std::to_string(i) + "/" +
         std::to_string(this->sim_params.nframes);
-    cv::putText(frame, frame_text, cv::Point(10, 20),cv::FONT_HERSHEY_SIMPLEX,
-                0.35,cv::Scalar(255, 255, 255), 1);
+    cv::putText(frame, frame_text, cv::Point(10, 20), cv::FONT_HERSHEY_SIMPLEX,
+                0.35, cv::Scalar(255, 255, 255), 1);
 
     std::string energy_text = "Total Energy: " +
         scientificNotation(this->getTotalEnergy()) + " J";
-    cv::putText(frame, energy_text, cv::Point(10, image_width - 20),
-                cv::FONT_HERSHEY_SIMPLEX,0.35,cv::Scalar(255, 255, 255), 1);
+    cv::putText(frame, energy_text, cv::Point(10, image_size.width - 20),
+                cv::FONT_HERSHEY_SIMPLEX, 0.35, cv::Scalar(255, 255, 255), 1);
 
     // display the image
+    if (this->output_params.save) video.write(frame);
     cv::imshow("Simulation", frame);
     if (cv::waitKey(1) == 27) return;
   }

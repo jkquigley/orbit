@@ -1,6 +1,10 @@
 # Solar system with the inner four planets
 
-filename: solar.avi
+output:
+  filename: solar.avi
+  width: 720
+  height: 720
+  fps: 30
 
 simulation:
   timestep: 1 # s

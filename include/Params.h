@@ -14,6 +14,9 @@
 struct OutputParams {
   bool save;
   std::string filename;
+  int width;
+  int height;
+  int fps;
 };
 
 
