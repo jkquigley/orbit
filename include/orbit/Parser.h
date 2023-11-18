@@ -1,7 +1,7 @@
 // Copyright [2023] James Keane Quigley
 
-#ifndef ORBIT_INCLUDE_PARSER_H_
-#define ORBIT_INCLUDE_PARSER_H_
+#ifndef ORBIT_ORBIT_INCLUDE_PARSER_H_
+#define ORBIT_ORBIT_INCLUDE_PARSER_H_
 
 
 #include <vector>
@@ -18,4 +18,4 @@ class Parser {
 };
 
 
-#endif  // ORBIT_INCLUDE_PARSER_H_
+#endif  // ORBIT_ORBIT_INCLUDE_PARSER_H_

@@ -1,7 +1,7 @@
 // Copyright [2023] James Keane Quigley
 
-#ifndef ORBIT_INCLUDE_PARAMS_H_
-#define ORBIT_INCLUDE_PARAMS_H_
+#ifndef ORBIT_ORBIT_INCLUDE_PARAMS_H_
+#define ORBIT_ORBIT_INCLUDE_PARAMS_H_
 
 #include <eigen3/Eigen/Eigen>
 #include <string>
@@ -41,4 +41,4 @@ struct BodyParams {
   cv::Scalar colour;
 };
 
-#endif  // ORBIT_INCLUDE_PARAMS_H_
+#endif  // ORBIT_ORBIT_INCLUDE_PARAMS_H_

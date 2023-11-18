@@ -3,7 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include <opencv2/opencv.hpp>
-#include "System.h"
+#include "orbit/System.h"
 
 
 /*
@@ -155,7 +155,10 @@ void System::run() {
     if (this->output_params.save) video.write(frame);
     if (this->output_params.display) cv::imshow("Simulation", frame);
     if (cv::waitKey(1) == 27) return;
+
+    bar.set_progress(100 * i / this->sim_params.nframes);
   }
+  bar.mark_as_completed();
 }
 
 

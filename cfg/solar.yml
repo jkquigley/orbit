@@ -9,7 +9,7 @@ output:
 
 simulation:
   timestep: 1 # s
-  nframes: 50000
+  nframes: 5000
   steps_per_frame: 20000
 
 bodies:
