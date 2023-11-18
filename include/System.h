@@ -1,39 +1,36 @@
-#ifndef ORBIT_SYSTEM_H
-#define ORBIT_SYSTEM_H
+// Copyright [2023] James Keane Quigley
+
+#ifndef ORBIT_INCLUDE_SYSTEM_H_
+#define ORBIT_INCLUDE_SYSTEM_H_
 
 
+#include <eigen3/Eigen/Eigen>
 #include <vector>
 #include <fstream>
-#include <eigen3/Eigen/Eigen>
 #include "Body.h"
+#include "Params.h"
 
 
 class System {
-public:
-    System(const std::vector<Body> &bodies, const float &timestep, const int &nframes, const int &steps_per_frame=1);
+ public:
+  System(const OutputParams &output_params, const SimulationParams &sim_params,
+         const std::vector<BodyParams> &bodies_params);
 
-    void run();
-    void run(const char* energy_filename, const bool &animate=false);
-    void run(const char* energy_filename, const char* pos_filename, const bool &animate=false);
+  void run();
 
-    double getTotalKineticEnergy();
-    double getTotalPotentialEnergy();
-    double getTotalEnergy();
+  double getTotalKineticEnergy();
+  double getTotalPotentialEnergy();
+  double getTotalEnergy();
 
-private:
-    void updateForces();
-    void update();
+ private:
+  void updateForces();
+  void update();
 
-    void writeMiscData(std::ofstream &file);
-    void writePositionData(std::ofstream &file);
-    void writeEnergyData(std::ofstream &file);
-
-    double G = 6.67408e-11;
-    std::vector<Body> bodies;
-    const float timestep;
-    const int nframes;
-    const int steps_per_frame;
+  double G = 6.67408e-11;
+  std::vector<Body> bodies;
+  const OutputParams output_params;
+  const SimulationParams sim_params;
 };
 
 
-#endif //ORBIT_SYSTEM_H
+#endif  // ORBIT_INCLUDE_SYSTEM_H_

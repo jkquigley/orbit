@@ -1,98 +1,32 @@
+// Copyright [2023] James Keane Quigley
+
 #include <iostream>
 #include "Parser.h"
+#include "System.h"
 
 
-void help()
-{
-    std::cout << "[Usage]\n"
-              << "./orbit animate <cfg file>\n"
-              << "./orbit animate <cfg file> <energy data file>\n"
-              << "./orbit animate <cfg file> <energy data file> <position data file>\n"
-              << "./orbit record <cfg file> <energy data file>\n"
-              << "./orbit record <cfg file> <energy data file> <position data file>\n";
+void help() {
+  std::cout << "[Usage]\n"
+            << "./orbit <cfg file>\n";
 }
 
 
-int main(int argc, char** argv)
-{
-    Parser parser;
-
-    if (argc == 1)
-    {
-        if (strcmp(argv[1], "help") == 0)
-        {
-            help();
-            return 0;
-        }
+int main(int argc, char** argv) {
+  if (argc == 2) {
+    OutputParams output_params;
+    SimulationParams sim_params;
+    std::vector<BodyParams> bodies_params;
+    if (!Parser::load(argv[1], &output_params, &sim_params, &bodies_params)) {
+      std::cout << "Error loading file: " << argv[1] << "\n";
+      return -1;
     }
 
-    else if (strcmp(argv[1], "animate") == 0)
-    {
-        if (argc == 3)
-        {
-            const char *infile = argv[2];
+    System system(output_params, sim_params, bodies_params);
+    system.run();
 
-            auto simulation = parser.load(infile);
-
-            simulation.run();
-
-            return 0;
-        }
-
-        else if (argc == 4)
-        {
-            const char *infile = argv[2];
-            const char *energy_outfile = argv[3];
-
-            auto simulation = parser.load(infile);
-
-            simulation.run(energy_outfile, true);
-
-            return 0;
-        }
-
-        else if (argc == 5)
-        {
-            const char *infile = argv[2];
-            const char *energy_outfile = argv[3];
-            const char *position_outfile = argv[4];
-
-            auto simulation = parser.load(infile);
-
-            simulation.run(energy_outfile, position_outfile, true);
-
-            return 0;
-        }
-    }
-
-    else if (strcmp(argv[1], "record") == 0)
-    {
-        if (argc == 4)
-        {
-            const char *infile = argv[2];
-            const char *energy_outfile = argv[3];
-
-            auto simulation = parser.load(infile);
-
-            simulation.run(energy_outfile, false);
-
-            return 0;
-        }
-
-        else if (argc == 5)
-        {
-            const char *infile = argv[2];
-            const char *energy_outfile = argv[3];
-            const char *position_outfile = argv[4];
-
-            auto simulation = parser.load(infile);
-
-            simulation.run(energy_outfile, position_outfile, false);
-
-            return 0;
-        }
-    }
-
+    return 0;
+  } else {
     help();
     return -1;
+  }
 }
