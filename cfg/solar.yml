@@ -2,14 +2,14 @@
 
 output:
   display: true
-  filename: solar.avi
+  filename:
   width: 720
   height: 720
   fps: 30
 
 simulation:
   timestep: 1 # s
-  nframes: 5000
+  nframes: 2500
   steps_per_frame: 20000
 
 bodies:
