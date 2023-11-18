@@ -104,9 +104,12 @@ void System::run() {
                      CV_8UC3, cv::Scalar(0, 0, 0));
 
   // set up a video writer
-  cv::VideoWriter video(this->output_params.filename,
-                        cv::VideoWriter::fourcc('M', 'J', 'P', 'G'),
-                        this->output_params.fps, image_size);
+  cv::VideoWriter video;
+  if (this->output_params.save) {
+    video = cv::VideoWriter(this->output_params.filename,
+                            cv::VideoWriter::fourcc('M', 'J', 'P', 'G'),
+                            this->output_params.fps, image_size);
+  }
 
   // find the initial max distance to scale te animation
   double max_dist = 0;
