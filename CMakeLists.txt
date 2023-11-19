@@ -1,10 +1,8 @@
+cmake_minimum_required(VERSION 3.10)
 project(orbit)
 set(CMAKE_CXX_STANDARD 14)
-cmake_minimum_required(VERSION 3.10)
 
 set(CMAKE_BUILD_TYPE Release)
-
-
 
 find_package(OpenCV REQUIRED)
 find_package(Eigen3 REQUIRED)
